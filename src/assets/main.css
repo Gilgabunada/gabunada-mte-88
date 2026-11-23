@@ -1,0 +1,446 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --bg-main: #090d16;
+  --bg-surface: #111827;
+  --bg-card: #161f33;
+  --bg-input: #0b1120;
+  --border-subtle: #243049;
+  --border-focus: #6366f1;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-glow: rgba(99, 102, 241, 0.25);
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --success: #10b981;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.45);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at top, #131c31 0%, var(--bg-main) 55%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==================== NAVBAR ==================== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.25rem !important;
+  padding: 1rem 2rem !important;
+  background: rgba(11, 17, 32, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+
+/* Brand title via CSS so you don't even have to edit Navbar.vue */
+nav::before {
+  content: "🎬 MovieCatalog";
+  margin-right: auto;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #ffffff, #a5b4fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+nav a:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+nav a.router-link-active {
+  color: #ffffff;
+  background: var(--accent-glow);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+}
+
+nav button {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+nav button:hover {
+  border-color: var(--danger);
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.12);
+}
+
+/* ==================== LAYOUT & HEADINGS ==================== */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+section {
+  max-width: 100%;
+}
+
+h2 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0 0 1.5rem;
+  color: var(--text-primary);
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  color: #ffffff;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin: 1.75rem 0;
+}
+
+/* ==================== FORMS & AUTH CARDS ==================== */
+section[style*="max-width: 420px"],
+form {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Prevent double-box when form is inside the 420px auth section */
+section[style*="max-width: 420px"] form {
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  gap: 1.05rem;
+}
+
+section[style*="max-width: 420px"] h2 {
+  margin-bottom: 1.25rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #64748b;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* ==================== BUTTONS ==================== */
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.72rem 1.25rem;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform 0.12s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+section[style*="max-width: 420px"] form button[type="submit"] {
+  margin-top: 0.35rem;
+  width: 100%;
+  padding: 0.82rem 1.25rem;
+}
+
+button:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px var(--accent-glow);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ==================== BUTTONS ==================== */
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.2rem;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform 0.12s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px var(--accent-glow);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ==================== MOVIE CATALOG GRID & CARDS ==================== */
+section > div[style*="display: grid"] {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+  gap: 1.5rem !important;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-surface) 100%);
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 1.4rem !important;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+article:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent) !important;
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.6);
+}
+
+article p {
+  margin: 0.3rem 0;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+article p strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* "View Movie" link styled as a sleek full-width button */
+article a {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background: var(--accent);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+article a:hover {
+  background: var(--accent-hover);
+}
+
+/* ==================== SINGLE MOVIE DETAIL & COMMENTS ==================== */
+section[style*="max-width: 720px"] > div {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+}
+
+section[style*="max-width: 720px"] p {
+  color: var(--text-secondary);
+  margin: 0.5rem 0;
+}
+
+section[style*="max-width: 720px"] p strong {
+  color: var(--text-primary);
+}
+
+section[style*="max-width: 720px"] form {
+  flex-direction: row;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+#addComment {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+ul li {
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.8rem 1rem;
+  font-size: 0.93rem;
+  color: var(--text-primary);
+}
+
+/* ==================== ADMIN DASHBOARD TABLE ==================== */
+table {
+  margin-top: 1.5rem;
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+thead {
+  background: #1a243b;
+}
+
+th {
+  padding: 0.95rem 1rem;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+td {
+  padding: 0.9rem 1rem;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: middle;
+}
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+/* Space out Update and Delete buttons inside the Actions column */
+.actions-cell,
+td:last-child > div,
+td:last-child {
+  white-space: nowrap;
+}
+
+.actions-cell,
+td:last-child > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+td:last-child button + button {
+  margin-left: 0.5rem;
+}
+
+/* Style Update (1st button) and Delete (2nd button) in Admin table */
+td button:first-child {
+  background: #0284c7;
+  padding: 0.48rem 0.9rem;
+  font-size: 0.85rem;
+}
+
+td button:first-child:hover:not(:disabled) {
+  background: #0369a1;
+}
+
+td button:last-child {
+  background: var(--danger);
+  padding: 0.48rem 0.9rem;
+  font-size: 0.85rem;
+}
+
+td button:last-child:hover:not(:disabled) {
+  background: var(--danger-hover);
+}
